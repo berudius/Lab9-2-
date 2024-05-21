@@ -19,14 +19,14 @@
           <div class="sort-container">
             <img src="icons/sorter.png" for="sort-selector" class="sort-icon" alt="">
              <select class="sort-selector" name="" id="sort-selector">
-               <option value="за іменем" selected>За іменем</option>
-               <option value="за віком">За віком</option>
-               <option value="за містом">За містом</option>
-               <option value="за містом">За датою реєстрації</option>
+               <option value="за іменем" selected>By name</option>
+               <option value="за віком">By age</option>
+               <option value="за містом">By city</option>
+               <option value="за містом">By registration date</option>
              </select>
             <img src="icons/filter.png" class="filter-icon" alt="">
           </div>
-          <input class="search-bar" type="text" placeholder="Пошук"/>
+          <input class="search-bar" id="search-bar" type="text" placeholder="Search"/>
         </div>
         <div class="content"></div>
       </div>
@@ -66,6 +66,8 @@
     </form>
     </div>
   </main>
+
+  <button class="logout-button" onclick="logOut()">Log out</button>
 
 
 

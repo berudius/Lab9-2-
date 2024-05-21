@@ -160,7 +160,7 @@ main {
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 5px;
-  z-index: 2; /* Змінено значення z-index на більше, ніж у .user-container */
+  z-index: 2; 
   font-size: 0.9em;
 }
 
@@ -260,18 +260,45 @@ main {
 }
 
 
+.logout-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
 
+.logout-button:hover {
+  background-color: #0056b3;
+}
 
 
 @media (min-width: 768px) {
   main {
     grid-template-columns: 70% 30%;
   }
+
+
+
 }
 
 @media (max-width: 767px) {
   .filter-bar {
     display: none;
+  }
+
+  .filter-icon{
+    display: block;
+    position: absolute;
+    left: 20vw
+
   }
 }
 

@@ -1,0 +1,264 @@
+body {
+  position: relative;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif;
+  position: relative;
+  background-color: #f0f0f0;
+}
+
+form {
+  position: relative;
+  width: 30%;
+  max-width: 400px;
+  margin: 80px auto;
+  background: linear-gradient(135deg, #FFB6C1, #87CEEB);
+  border-radius: 20px;
+  /* filter: blur(5px); */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  width: calc(100% - 24px);
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  outline: none;
+  margin-bottom: 16px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+  background-color: #fff;
+}
+
+.valid-input {
+  
+}
+
+.invalid-input {
+ 
+}
+
+.valid-input:focus {
+  box-shadow: 0 0 4px 2px #87CEEB; 
+  border: 2px solid #87CEEB !important; 
+}
+
+.invalid-input:focus {
+  box-shadow: 0 0 4px 2px #FFB6C1; 
+  border: 2px solid #FFB6C1 !important; 
+}
+
+.tabs-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.sign-up-tab,
+.sign-in-tab {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  background: linear-gradient(135deg,#87CEEB, #FFB6C1);
+  border: none;
+  padding: 12px 0;
+  cursor: pointer;
+  border-radius: 20px 20px 0 0;
+  transition: background-color 0.3s ease;
+}
+
+.sign-in-tab {
+  background: linear-gradient(45deg, #FFB6C1,#87CEEB);
+}
+
+
+.sign-up-tab:hover{
+  background: linear-gradient(45deg, #FFB6C1,#87CEEB);
+  color: #fff;
+}
+
+.sign-in-tab:hover{
+  background: linear-gradient(135deg, #87CEEB, #FFB6C1);
+  color: #fff;
+}
+
+.sign-in-container,
+.sign-up-container {
+  background-color: rgba(255, 255, 255, 0.334);
+  padding: 16px 20px;
+  margin: 0 20px;
+  border-radius: 10px 10px 20px 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.error-msg{
+  position: relative;
+  font-size: 10px;
+  color: #f74e4e;
+  bottom: 15px;
+  white-space: pre-line;
+  /* display: none; */
+}
+
+form img{
+  width: 25px;
+  height: 25px;
+}
+.input-container {
+  position: relative; 
+}
+
+.toggle-icon {
+  position: absolute;
+  top: 40%;
+  right: 10px;
+  transform: translateY(-50%);
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.eye-watch{
+  content:  url("icons/eye.png");
+ 
+}
+
+
+button {
+  position: relative;
+  padding: 14px 28px;
+  background-color: #FF1493;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 90%;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+button:hover {
+  background-color: #C71585; /* Колір кнопки при наведенні */
+}
+
+
+
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.loader {
+  position: absolute;
+  top: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 12vw;
+  padding: 20px;
+  background: #fff;
+  border: 2px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+      transform: rotate(360deg);
+  }
+}
+
+.loader p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+
+
+
+
+.result-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.table-success,
+.table-error {
+  width: 12vw;
+  padding: 20px;
+  background: #fff;
+  border: 2px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.table-success{
+  position: absolute;
+  top: 0px;
+}
+
+.table-error{
+  position: absolute;
+  top: 0px;
+}
+
+.table-success h2,
+.table-error h2 {
+  margin-bottom: 10px;
+  color: #4CAF50;
+}
+
+.table-success h2{
+  margin-top: 10px;
+}
+
+.table-error h2 {
+  color: #F44336;
+}
+
+
+
+
+
+
+
+
+
+.hidden {
+  display: none;
+}

@@ -1,8 +1,13 @@
-
 "use strict"
 
 
+
+
+
 let allGeneratedUsers = [];
+let filteredAndSortedUsers = [];
+let firstStart = true;
+
 
 async function getRandomUsers() {
 const apiURL = 'https://randomuser.me/api/?results=16';
@@ -23,11 +28,12 @@ try {
 }
 }
 
-async function displayUsers(hasArrayAllUsers = false, filteredUsers = []) {
+async function displayUsers(hasArray = false, filteredUsers = []) {
 const userContent = document.querySelector('.content');
 
 try {
-    const users = hasArrayAllUsers ? filteredUsers : await getRandomUsers();
+    const users = hasArray ? filteredUsers : await getRandomUsers();
+    if (firstStart) { filteredAndSortedUsers = mainSorter(users);  firstStart = false}
     users.forEach(user => {
         const userContainer = document.createElement('div');
         userContainer.classList.add('user-container');
@@ -63,14 +69,14 @@ try {
         userContainer.addEventListener("mouseover", function (event) {
             const hiddenInfo = event.currentTarget.nextElementSibling;
             const userContainerRect = event.currentTarget.getBoundingClientRect();
-            // Отримання розмірів вікна
+            
             const windowWidth = window.innerWidth;
             const windowHeight = window.innerHeight;
-            // Визначення положення hiddenInfo відносно вікна
+            
             const leftPosition = userContainerRect.left + window.pageXOffset;
             const topPosition = userContainerRect.bottom + window.pageYOffset;
-            // Встановлення стилів для відображення hiddenInfo
-            hiddenInfo.style.top = `${topPosition }px`; // Додатковий відступ від userContainer
+          
+            hiddenInfo.style.top = `${topPosition }px`; 
             hiddenInfo.style.left = `${leftPosition}px`;
             hiddenInfo.classList.add("show");
         });
@@ -105,9 +111,9 @@ function clearInnerHTML(blockElement){
 
 
 
-async function scrollEvent (event) {
+function scrollEvent (event) {
     const container = event.currentTarget;
-   if ((container.scrollHeight - container.scrollTop) -40 <= container.clientHeight) {
+   if ((container.scrollHeight - container.scrollTop -10)  <= container.clientHeight) {
        setTimeout( ()=>{
            console.log("scrolled");
            getRandomUsers();// adding new users to global storage
@@ -199,6 +205,8 @@ function filterUsersByAge(allGeneratedUsers){
     return usersForFiltering;
 }
 
+
+
 function filterUsersByGender(users){
     let male = document.getElementById("male");
     let female = document.getElementById("female");
@@ -243,15 +251,60 @@ function sortByName(users){
       return user1FullName.localeCompare(user2FullName);
     } );
 
-    console.log(" Users");
-    console.log(users);
+}
+
+function sortByAge(users) {
+    users.sort((user1, user2) => {
+        return user1.dob.age - user2.dob.age;
+    });
+
+}
+
+function sortByCity(users) {
+    users.sort((user1, user2) => {
+        return user1.location.city.localeCompare(user2.location.city);
+    });
+
+}
+
+function sortByRegistrationDate(users) {
+    users.sort((user1, user2) => {
+        let date1 = new Date(user1.registered.date);
+        let date2 = new Date(user2.registered.date);
+        
+        return date2 - date1; // порівняння для спадного порядку
+    });
+}
+
+
+function mainSorter(users){
+    let sortSelector = document.getElementById('sort-selector');
+    let selectedIndex = sortSelector.selectedIndex;
+    switch(selectedIndex){
+        case 1:
+            sortByAge(users);
+            break;
+        case 2:
+            sortByCity(users);
+            break;
+        case 3:
+            sortByRegistrationDate(users);
+            break;
+        
+        default:
+            sortByName(users);
+            break;
+    }
+
+    return users
 }
 
 function mainFilter(){
-    const filteredUsers =  filterUsersByEmail(filterUsersByCity(filterUsersByGender(filterUsersByAge(allGeneratedUsers))));
+    let filteredUsers =  filterUsersByEmail(filterUsersByCity(filterUsersByGender(filterUsersByAge(allGeneratedUsers))));
     let userContainer = document.querySelector(".content");
-    clearInnerHTML(userContainer);
 
+    filteredAndSortedUsers = mainSorter(filteredUsers);
+    clearInnerHTML(userContainer);
     displayUsers(true, filteredUsers);
 }
 
@@ -273,7 +326,46 @@ function toggleCheckbox(_this) {
 }
 
 
+function setSearchBarEvent(){
+    let searchBar = document.getElementById("search-bar");
+   searchBar.addEventListener("input", ()=>{
+    if(searchBar.value.length == 0){
+        displayUsers( true, filteredAndSortedUsers);
+    }
+    else{
+        searchUser([...filteredAndSortedUsers]);
+    }
+   });
+}
 
+function searchUser(users) {
+    let userNameToFind = document.getElementById("search-bar").value.toLowerCase();
+    let regex = new RegExp(userNameToFind.split('').join('.*'), 'i'); // створюємо регулярний вираз з userNameToFind
+    
+    users = users.filter(user => {
+        let userFullName = (user.name.first + " " + user.name.last).toLowerCase();
+        return regex.test(userFullName); // перевіряємо чи userFullName відповідає регулярному виразу
+    });
+
+    console.log("users to find");
+    console.log(users);
+
+    clearInnerHTML(document.querySelector(".content"));
+    displayUsers(true, users);
+}
+
+
+function logOut(){
+    localStorage.clear();
+    window.location.href = `../regForm.html`;
+}
+
+
+
+
+
+
+//виклики функцій
 displayUsers();
 setTimeout(()=>{
     sortByName(allGeneratedUsers);
@@ -281,6 +373,10 @@ setTimeout(()=>{
 
 // setEventForFilterButton()
 setScrollEventForUserContainer();
+setSearchBarEvent();
+document.getElementById('sort-selector').addEventListener("change", ()=>{
+    mainFilter();
+});
 
 
 

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Validation</title>
+  <link rel="stylesheet" href="RegFormstyle.css">
+</head>
+<body>
+
+
+  <form id="form" novalidate>
+    <div class="tabs-container">
+        <span  class="sign-up-tab" style="border-radius: 18px 0 0 0;">Sign up</span>
+        <span  class="sign-in-tab" style="border-radius: 0 18px 0 0;">Sign in</span>
+    </div>
+
+    <div id="sign-up-container" class="sign-up-container">
+      <label>User Name</label>
+      <div class="input-container">
+        <input class="invalid-input" type="text" name="user_name" value="" required style="margin: 10;"/>
+        <span  class="error-msg"></span>
+      </div>
+
+    
+      <label>Email</label>
+      <div class="input-container">
+        <input class="invalid-input" id="email-up"  type="email" name="email" value="" pattern="^[a-zA-Z0-9]+(?:[.][a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)+$"  required/>
+        <span  class="error-msg"></span>
+      </div>
+
+    
+      <label>Password</label>
+      <div class="input-container">
+        <input id="password-up" class="invalid-input" type="password" name="user_pass" value="" minlength="8" required/>
+        <img src="icons/hidden.png" class="toggle-icon" alt="">
+        <span  class="error-msg"></span>
+      </div>
+
+
+      <label>Confirm password</label>
+      <div class="input-container">
+        <input id="pass_confirm" class="invalid-input" type="password" name="pass_confirm" value="" minlength="8" required/>
+        <img src="icons/hidden.png" class="toggle-icon" alt="">
+        <span  class="error-msg"></span>
+      </div>
+
+    
+    </div>
+
+    <div id="sign-in-container" class="sign-in-container hidden">
+
+    
+      <label>Email</label>
+      <div class="input-container">
+        <input id="email-in" type="email" name="email" value="" pattern="^[a-zA-Z0-9]+(?:[.][a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)+$" required/>
+        <span  class="error-msg"></span>
+      </div>
+
+    
+      <label>Password</label>
+      <div class="input-container">
+        <input id="password-in"  type="password" name="user_pass" value="" minlength="8" required/>
+        <img src="icons/hidden.png" class="toggle-icon" alt="">
+        <span  class="error-msg"></span>
+      </div>
+
+
+    </div>
+
+    <button id="signUpBtn" type="button">Sign Up</button>
+    <button id="signInBtn" type="button" class="hidden">Sign In</button>
+  </form>  
+
+  <div class="result-wrapper">
+    <div class="table-success hidden">
+        <h2>Успішно</h2>
+    </div>
+    <div class="table-error hidden">
+        <h2>Неуспішно</h2>
+        <p>Сталася помилка. Будь ласка, спробуйте знову.</p>
+    </div>
+</div>
+
+  <div class="loader-wrapper">
+    <div class="loader hidden">
+        <div class="spinner"></div>
+        <p>Зачекайте...</p>
+    </div>
+  </div>
+
+  <script src="regForm.js"></script>
+</body>
+</html>
