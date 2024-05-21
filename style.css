@@ -1,0 +1,283 @@
+body {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  grid-gap: 30px;
+  width: 100%;
+  max-width: 1200px; 
+
+  margin-top: 10px;
+}
+
+.users-container {
+  width: 100%; 
+  height: 100vh;
+  background: #ffffff;
+  border-radius: 20px;
+  min-width: 300px;
+  box-sizing: border-box;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.users-container::-webkit-scrollbar{
+  width: 0px;
+  height: 0px;
+}
+
+
+.filter-bar {
+  position: relative;
+  width: 100%; 
+  height: 95%;
+
+  min-height: 50vh;
+  background-color: rgb(255, 255, 255);
+  border-radius: 15px;
+  min-width: 200px;
+  box-sizing: border-box;
+  top: 2vh;
+  height: 95vh;
+}
+.head {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  gap: 5px;
+  padding: 15px;
+  background: linear-gradient(to bottom, #dfbedf, #dfdabe);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sort-container {
+  position: relative;
+  grid-row: 1;
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  left: 10vw;
+}
+
+
+.filter-icon {
+  display: none;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  left: 4vw;
+}
+.sort-icon{
+  width: 30px;
+  height: 30px;
+}
+
+.sort-selector {
+  width: auto;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif;
+  font-size: 0.9rem;
+  color: #2f4f4f;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  appearance: none;
+  -webkit-appearance: none;
+  background-size: 15px;
+  padding: 3px 25px 3px 10px;
+  color: rgb(0, 0, 0);
+}
+
+.sort-selector::placeholder {
+  color: #aaa;
+}
+
+.search-bar {
+  grid-row: 2;
+  grid-column: 1 / span 2;
+  width: calc(100% - 10px);
+  height: 25px;
+  padding: 3px 8px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #fff;
+}
+
+
+.search-bar:focus {
+  outline: none;
+  border-color: #9b9b9b;
+  box-shadow: 0 0 6px rgba(128, 137, 128, 0.5);
+  transition: box-shadow 0.3s ease;
+}
+
+
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.user-container {
+  position: relative;
+  width: 160px;
+  margin: 10px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  z-index: 1; /* Додали z-index для user-container */
+}
+
+.user-container:hover {
+  transform: translateY(-5px);
+}
+
+
+
+
+.hidden-info {
+  display: none;
+  position: absolute;
+  bottom: -85px;
+  left: 0;
+  width: 15vw;
+  min-width: 200px;
+  height: 12vh;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px;
+  z-index: 2; /* Змінено значення z-index на більше, ніж у .user-container */
+  font-size: 0.9em;
+}
+
+
+.user-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: block;
+}
+
+.user-info {
+  margin-top: 10px;
+}
+
+.user-info span {
+  display: block;
+  margin-bottom: 3px;
+  text-align: center;
+}
+
+
+.show{
+  display: block;
+}
+
+
+
+
+
+#filterForm {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: calc(100% - 20px);
+  padding: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: calc(100% - 18px);
+  font-size: 14px;
+}
+
+.form-group button {
+  padding: 8px 15px;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.hide{
+  display: none;
+}
+
+.subblock {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  max-height: 200px;
+}
+
+.subblock::-webkit-scrollbar{
+  height: 0;
+  width: 0;
+}
+
+
+
+
+.email-list-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.remove-icon {
+  color: red;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+
+
+
+
+@media (min-width: 768px) {
+  main {
+    grid-template-columns: 70% 30%;
+  }
+}
+
+@media (max-width: 767px) {
+  .filter-bar {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  main {
+    grid-template-columns: 75% 25%;
+  }
+}
+

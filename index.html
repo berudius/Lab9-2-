@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Підключення бібліотеки Font Awesome -->
+
+</head>
+<body>
+
+  <main>
+    <div class="container">
+      <div class="users-container">
+        <div class="head">
+          <span class="head-span">Знаходь нові знайомства</span>
+          <div class="sort-container">
+            <img src="icons/sorter.png" for="sort-selector" class="sort-icon" alt="">
+             <select class="sort-selector" name="" id="sort-selector">
+               <option value="за іменем" selected>За іменем</option>
+               <option value="за віком">За віком</option>
+               <option value="за містом">За містом</option>
+               <option value="за містом">За датою реєстрації</option>
+             </select>
+            <img src="icons/filter.png" class="filter-icon" alt="">
+          </div>
+          <input class="search-bar" type="text" placeholder="Пошук"/>
+        </div>
+        <div class="content"></div>
+      </div>
+
+    </div>
+    <div class="filter-bar">
+      <form id="filterForm" novalidate>
+        <div class="form-group">
+            <label>Age: from <input id="from" type="number" name="ageFrom" style="width: 5vh;" value="13"> to <input id="to" type="number" name="ageTo" value="100" style="width: 5vh;"></label>
+        </div>
+        <div class="form-group">
+            <label>
+               <input type="checkbox" name="gender" value="male" id="male" onclick="toggleCheckbox(this)"> Male
+            </label>
+            <label>
+              <input type="checkbox" name="gender" value="female" id="female" onclick="toggleCheckbox(this)"> Female
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                Remove city <input type="checkbox" id="removeCityCheckbox" onclick="displayAllCitiesList()">
+            </label>
+            
+            <div class="hide subblock" id="citySubblock">
+                <!-- Dynamically populated with JavaScript -->
+            </div>
+        </div>
+        <div class="form-group">
+            <label>
+                Add email to avoid <input type="text" id="removeEmailInput" name="removeEmail"> <button type="button" id="addEmailButton" onclick="addEmailToAvoid()" style="margin-top: 20px;">Add Email</button>
+            </label>
+            <div class="subblock" id="emailSubblock">
+                <!-- Dynamically populated with JavaScript -->
+            </div>
+        </div>
+        <button  type="button" id="filter-button" onclick="mainFilter()">Filter</button>
+    </form>
+    </div>
+  </main>
+
+
+
+  <script src="main.js"></script>
+</body>
+</html>
